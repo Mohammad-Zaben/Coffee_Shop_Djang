@@ -9,15 +9,15 @@ class SalesReceipts(models.Model):
     transaction_date = models.DateField()
     transaction_time = models.DateTimeField()
     sales_outlet_id = models.ForeignKey(SalesOutlet, on_delete=models.CASCADE)
-    staff_id = models.IntegerField
+    staff_id = models.IntegerField(default=0)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
     instore_yn = models.CharField(max_length=1)
-    order = models.IntegerField
-    line_item_id = models.IntegerField
+    order = models.IntegerField(default=0)
+    line_item_id = models.IntegerField(default=0)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField
-    line_item_amount = models.DecimalField
-    unit_price = models.DecimalField
-    promo_item_yn = models.CharField
+    quantity = models.IntegerField(default=0)
+    line_item_amount = models.DecimalField(max_digits=4, decimal_places=2,default=0.0)
+    unit_price = models.DecimalField(max_digits=4, decimal_places=2,default=0.0)
+    promo_item_yn = models.CharField(max_length=1,default='N')
 
 

@@ -10,7 +10,11 @@ class SalesOutlet(models.Model):
     store_state_province = models.CharField(max_length=2)
     store_telephone = models.CharField(max_length=15)
     store_postal_code = models.CharField(max_length=10)
-    store_longitude = models.DecimalField
-    store_latitude = models.DecimalField
+    store_latitude = models.DecimalField(max_digits=9, decimal_places=6,default=0.0)
+    store_longitude = models.DecimalField(max_digits=9, decimal_places=6,default=0.0)
     manager = models.CharField(max_length= 40)
     neighborhood = models.CharField(max_length= 40)
+
+
+
+#,,,,,,,,,,,
