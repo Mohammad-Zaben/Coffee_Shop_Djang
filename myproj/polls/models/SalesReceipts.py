@@ -24,6 +24,7 @@ class SalesReceipts(models.Model):
 
     class Meta:
         constraints = [
-            UniqueConstraint(fields=['transaction_id', 'transaction_date', 'transaction_time', 'sales_outlet'],
-                             name='unique_field1_field2')
+            UniqueConstraint(
+                fields=['transaction_id', 'transaction_date', 'transaction_time', 'sales_outlet', 'product'],
+                name='unique_field1_field2')
         ]
