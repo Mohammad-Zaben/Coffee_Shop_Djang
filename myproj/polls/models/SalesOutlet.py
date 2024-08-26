@@ -16,5 +16,3 @@ class SalesOutlet(models.Model):
     neighborhood = models.CharField(max_length= 40)
 
 
-
-#,,,,,,,,,,,

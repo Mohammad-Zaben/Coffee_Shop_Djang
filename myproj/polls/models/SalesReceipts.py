@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import UniqueConstraint
+
 from .SalesOutlet import SalesOutlet
 from .Customer import Customer
 from .Product import Product
@@ -22,8 +24,6 @@ class SalesReceipts(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(
-                fields=['transaction_id', 'transaction_date', 'transaction_time'],
-                name='unique_migration_host_combination'
-            )
+            UniqueConstraint(fields=['transaction_id', 'transaction_date', 'transaction_time', 'sales_outlet'],
+                             name='unique_field1_field2')
         ]
