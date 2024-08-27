@@ -1,5 +1,5 @@
-from .SalesReceipts import SalesReceipts
+from .SalesReceipts import Salereciepts
 from .Product import Product
 from .Customer import Customer
-from .SalesOutlet import SalesOutlet
+from .SalesOutlet import Salesoutlet
 

@@ -15,3 +15,8 @@ class Product(models.Model):
     promo_yn = models.CharField(max_length=1)
     new_product_yn = models.CharField(max_length=1)
 
+    class Meta:
+        managed = False
+        db_table = 'product'
+
+

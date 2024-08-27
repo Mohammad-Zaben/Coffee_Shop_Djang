@@ -11,3 +11,7 @@ class Customer(models.Model):
     birthdate = models.DateField()
     gender = models.CharField(max_length=1)
     birth_year = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'customer'

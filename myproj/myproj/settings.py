@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'myproj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django coffee',  # Replace with your database name
+        'NAME': 'test data',  # Replace with your database name
         'USER': 'root',  # Replace with your MySQL username
         'PASSWORD': '',  # Replace with your MySQL password
         'HOST': 'localhost',  # Replace with the MySQL server address
