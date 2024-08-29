@@ -17,6 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from myproj.polls.views import get_sales_daily_bases
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path('sale_daily/<int:id>&<str:date>', get_sales_daily_bases)
+    # path('sale_daily/', hello)
 ]
