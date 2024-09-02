@@ -1,33 +1,5 @@
-from sqlalchemy import create_engine
-import pandas as pd
+from database import sale_receipts_df
 
-
-engine = create_engine('mysql+pymysql://root:@localhost:3306/test_data')
-sale_receipts_df = pd.read_sql('SELECT * FROM salereciepts', con=engine)
-
-# Convert the 'transaction_date' column to datetime format
-sale_receipts_df['transaction_date'] = pd.to_datetime(sale_receipts_df['transaction_date'])
-
-# def selling_item():
-#   selling_list=['product_id' ,'quantity' ,'sales_outlet_id']
-#   filtered_sales_df = sale_receipts_df[selling_list]
-#   most_selling=filtered_sales_df.groupby(['sales_outlet_id' ,'product_id']) ['quantity'].count().reset_index(name='count')
-#   most_selling_item = most_selling.loc[most_selling['count' ].idxmax()]
-#  # print(most_selling)
-#   print(most_selling_item)
-
-# def selling_item():
-#     selling_list = ['product_id', 'quantity', 'sales_outlet_id']
-#     filtered_sales_df = sale_receipts_df[selling_list]
-#
-#     # Group by product_id and sum the quantities across all outlets
-#     most_selling = filtered_sales_df.groupby('product_id')['quantity'].sum().reset_index(name='total_quantity')
-#
-#     # Find the product with the highest total quantity sold across all outlets
-#     most_selling_item = most_selling.loc[most_selling['total_quantity'].idxmax()]
-#
-#     # Print the most selling item
-#     print(f"The most selling item across all outlets is product ID {most_selling_item['product_id']} with a total quantity of {most_selling_item['total_quantity']}.")
 
 def selling_item():
     selling_list = ['product_id', 'quantity', 'sales_outlet_id']

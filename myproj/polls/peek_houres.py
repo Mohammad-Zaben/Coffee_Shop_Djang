@@ -1,11 +1,4 @@
-from sqlalchemy import create_engine
-import pandas as pd
-
-engine = create_engine('mysql+pymysql://root:@localhost:3306/test data')
-sale_receipts_df = pd.read_sql('SELECT * FROM salereciepts', con=engine)
-
-# Convert the 'transaction_date' column to datetime format
-sale_receipts_df['transaction_date'] = pd.to_datetime(sale_receipts_df['transaction_date'])
+from database import sale_receipts_df
 
 
 def peek_houres(sales_outlet_id):
@@ -24,5 +17,5 @@ def peek_houres(sales_outlet_id):
 
 
 if __name__ == '__main__':
-    peek=peek_houres(3)
+    peek = peek_houres(3)
     print(peek)
