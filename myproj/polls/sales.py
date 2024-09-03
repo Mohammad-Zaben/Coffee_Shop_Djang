@@ -1,5 +1,18 @@
+import numpy as np
+from matplotlib import pyplot as plt
+
 from database import sale_receipts_df, pd
 
+def histogram():
+    import matplotlib.pyplot as plt
+    plt.figure(figsize=(12, 7))
+    plt.plot(retail_data.iloc[:,0], retail_data.iloc[:,1], marker='o', linestyle='-', color='b')
+    plt.title('Sales Over Time')
+    plt.xlabel(retail_data.iloc[:,0].name)
+    plt.ylabel('Sales')
+    plt.xticks(rotation=0)  # Rotate x-axis labels for better readability
+    plt.grid(True)
+    plt.show()
 
 def sales_daily_base(sales_outlet_id, day_date):
     sales_list = ['transaction_date', 'sales_outlet_id', 'quantity', 'unit_price']
@@ -12,14 +25,13 @@ def sales_daily_base(sales_outlet_id, day_date):
 
 
 def daily_logic(date_range, days_num, sales_outlet_id):
-    total_sales = 0
-    daily_df = pd.DataFrame(columns=['Date', 'total_sales'])
+    daily_data = []
+
     for i in range(days_num):
         total_sales = sales_daily_base(sales_outlet_id, date_range[i].to_pydatetime())
-        new_row = pd.DataFrame({'Date': [date_range[i].to_pydatetime()], 'total_sales': [total_sales]})
-        daily_df = pd.concat([daily_df, new_row], ignore_index=True)
-        # total_sales = total_sales + sales_daily_base(sales_outlet_id, date_range[i].to_pydatetime())
+        daily_data.append({'Date': date_range[i].to_pydatetime(), 'total_sales': total_sales})
 
+    daily_df = pd.DataFrame(daily_data)
     return daily_df
 
 
@@ -53,5 +65,8 @@ def logic_type(start_date, end_date, sales_outlet_id):
 if __name__ == '__main__':
     # Todo test for performance and logic
     start_date = '2019-04-01'
-    end_date = '2019-04-12'
+    end_date = '2019-04-18'
     sales_outlet_id = 3
+    retail_data = logic_type(start_date, end_date, sales_outlet_id)
+    print(retail_data)
+    histogram()
