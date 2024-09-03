@@ -1,7 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
-from database import sale_receipts_df, pd
+from .database import sale_receipts_df, pd
 
 def histogram():
     import matplotlib.pyplot as plt
@@ -51,6 +51,7 @@ def weekly_logic(start_date, end_date, sales_outlet_id):
 
 def logic_type(start_date, end_date, sales_outlet_id):
     date_range = pd.date_range(start=start_date, end=end_date)
+    print(date_range)
     days_num = len(date_range)
     result_df = None
     if days_num <= 7:

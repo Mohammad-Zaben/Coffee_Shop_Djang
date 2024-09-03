@@ -1,6 +1,6 @@
 from matplotlib import pyplot as plt
 
-from database import sale_receipts_df
+from .database import sale_receipts_df
 import seaborn as sns
 
 
@@ -15,6 +15,7 @@ def sales_scatter_plot(max_hour_per_day):
     plt.grid(True)
     plt.show()
 
+
 def peek_houres(sales_outlet_id):
     houres_list = ['transaction_date', 'transaction_time', 'sales_outlet_id']
     peek_houres = sale_receipts_df[houres_list]
@@ -24,7 +25,8 @@ def peek_houres(sales_outlet_id):
     max_hour_per_day = peek_houres.loc[peek_houres.groupby('transaction_date')['count'].idxmax()].reset_index(drop=True)
     max_hour_per_day = max_hour_per_day.groupby('hour')['hour'].count().reset_index(name='count')
     print(max_hour_per_day)
-    sales_scatter_plot(max_hour_per_day)
+    # Plot the sales scatter plot
+    # sales_scatter_plot(max_hour_per_day)
     max_count_index = max_hour_per_day['count'].idxmax()
     # Get the corresponding hour
     max_hour = max_hour_per_day.loc[max_count_index, 'hour']
