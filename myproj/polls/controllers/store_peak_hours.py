@@ -25,6 +25,4 @@ def get_peak_hour(sales_outlet_id):
     peek_hour_df = filter_df(sales_outlet_id)
     peek_hour_df = add_hour_column(peek_hour_df)
     peek_hour = get_max_hour(peek_hour_df)
-    print(peek_hour)
-
-get_peak_hour(3)
+    return peek_hour
