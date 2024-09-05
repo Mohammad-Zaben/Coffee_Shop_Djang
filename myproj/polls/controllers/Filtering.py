@@ -9,11 +9,21 @@ class Filter:
         if sales_outlet_id:
             filtered_df = filtered_df[
                 (filtered_df["sales_outlet_id"] == sales_outlet_id)
-                ]
+            ]
         if start_date and end_date:
             filtered_df = filtered_df[
                 (filtered_df["transaction_date"] >= start_date) &
                 (filtered_df["transaction_date"] <= end_date)
                 ]
 
+        return filtered_df
+
+    @staticmethod
+    def get_work_week_df(sales_df):
+        sales_df = sales_df.assign(work_week=lambda x: x["transaction_date"].apply(lambda dt: dt.isocalendar()[1]))
+        return sales_df
+
+    @staticmethod
+    def apply_total_sales(filtered_df):
+        filtered_df = filtered_df.assign(total_sales=lambda x: (x['quantity'] * x['unit_price']))
         return filtered_df

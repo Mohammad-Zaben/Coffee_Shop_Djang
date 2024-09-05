@@ -8,6 +8,7 @@ def best_week(week):
     weekly_dataframe = weekly_dataframe[(weekly_dataframe["work_week"] == week)]
     weekly_dataframe = weekly_dataframe.assign(total_sales=lambda x: (x['quantity'] * x['unit_price']))
     weekly_dataframe = weekly_dataframe.groupby(['work_week','sales_outlet_id'])['total_sales'].sum().reset_index()
+    print(weekly_dataframe)
     # Retrieve the row with the maximum 'total_sales'
     weekly_dataframe = weekly_dataframe.loc[weekly_dataframe['total_sales'].idxmax()]
     return weekly_dataframe
