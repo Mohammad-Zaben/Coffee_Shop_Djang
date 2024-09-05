@@ -34,4 +34,3 @@ def get_total_sales(sales_outlet_id, start_date, end_date, logic_type):
         print('Invalid logic type')
 
 
-print(get_total_sales(3, '2019-04-01', '2019-04-05', 'daily'))
