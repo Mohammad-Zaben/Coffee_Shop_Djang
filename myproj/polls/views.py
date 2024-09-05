@@ -2,9 +2,9 @@ from datetime import datetime
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .sales import logic_type
-from .most_selling_item import selling_item
-from .peek_houres import peek_houres
+from myproj.polls.controllers.sales import logic_type
+from myproj.polls.controllers.most_selling_item import selling_item
+from myproj.polls.controllers.peek_houres import peek_houres
 
 
 # Create your views here.
