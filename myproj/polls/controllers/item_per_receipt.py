@@ -1,4 +1,3 @@
-from database import sale_receipts_df
 from myproj.polls.controllers.Filtering import Filter
 
 
@@ -9,10 +8,10 @@ def filter_df(sales_outlet_id, start_date, end_date):
     return filtered_df
 
 
-def get_total_items(sales_outlet_id, start_date, end_date, logic_type):
+def get_total_items(sales_outlet_id, start_date, end_date):
     sales_df = filter_df(sales_outlet_id, start_date, end_date)
-    grouped_sales_df = sales_df.groupby(['transaction_date'])['quantity'].sum().reset_index(name='item_count')
-    #grouped_sales_df=grouped_sales_df.groupby(['transaction_date'])['transaction_id'].count().reset_index(name ='receipt_number')
+    grouped_sales_df = sales_df.groupby(['transaction_date'])['quantity'].sum().reset_index(name='item number')
     print(grouped_sales_df)
+    return grouped_sales_df
 
-get_total_items(3,'2019-04-01','2019-04-08','wwwww')
+get_total_items(3,'2019-04-01','2019-04-08')

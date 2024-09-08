@@ -1,4 +1,3 @@
-from myproj.polls.controllers.database import sale_receipts_df
 from myproj.polls.controllers.Filtering import Filter
 
 
