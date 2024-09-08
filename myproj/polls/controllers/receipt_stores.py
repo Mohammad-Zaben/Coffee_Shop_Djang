@@ -11,9 +11,10 @@ def filter_df(sales_outlet_id, start_date, end_date):
 
 def get_total_sales(sales_outlet_id, start_date, end_date, logic_type):
     sales_df = filter_df(sales_outlet_id, start_date, end_date)
-    sales_df = sales_df["transaction_id"].unique()
-    print(len(sales_df))
+    grouped_sales_df = sales_df.groupby(['transaction_date', 'transaction_id']).size().reset_index(name='receipt_count')
+    grouped_sales_df=grouped_sales_df.groupby(['transaction_date'])['transaction_id'].count().reset_index(name ='receipt_number')
+    return grouped_sales_df
 
 
 
-get_total_sales(3,"2019-04-01","2019-04-08","wwwww")
+
