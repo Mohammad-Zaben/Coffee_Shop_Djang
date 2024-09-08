@@ -2,9 +2,9 @@ from datetime import datetime
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from myproj.polls.controllers.sales import logic_type
-from myproj.polls.controllers.most_selling_item import selling_item
-from myproj.polls.controllers.peek_houres import peek_houres
+from .controllers.sales import logic_type
+from .controllers.most_selling_item import selling_item
+from .controllers.peek_houres import peak_hours
 
 
 # Create your views here.
@@ -51,7 +51,7 @@ def get_peek_hour(request):
 
     try:
         sales_outlet_id = int(sales_outlet_id)
-        peek_houre = peek_houres(sales_outlet_id)
+        peek_houre = peak_hours(sales_outlet_id)
         return Response(peek_houre)
     except Exception as e:
         return Response({"error": str(e)}, status=500)

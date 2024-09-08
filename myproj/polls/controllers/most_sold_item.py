@@ -27,5 +27,3 @@ def get_most_selling_item():
         f"The most selling item is product ID {most_selling_item['product_id']}  "
         f"with  total quantity  {most_selling_item['quantity']}."
     )
-
-

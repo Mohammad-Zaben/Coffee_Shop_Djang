@@ -29,4 +29,7 @@ def get_top_week(week):
     weekly_df = filter_df(week)
     weekly_df = get_filter_df(weekly_df)
     weekly_df = get_best_week(weekly_df)
+    print(weekly_df)
     return weekly_df
+
+get_top_week(14)
