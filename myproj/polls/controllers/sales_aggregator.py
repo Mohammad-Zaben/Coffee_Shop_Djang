@@ -27,7 +27,7 @@ def get_total_sales(sales_outlet_id, start_date, end_date, logic_type):
 if __name__ == '__main__':
     # Todo test for performance and logic
     start_date = '2019-04-01'
-    end_date = '2019-04-18'
+    end_date = '2019-04-28'
     sales_outlet_id = 3
-    retail_data = get_total_sales(sales_outlet_id, start_date, end_date,"weekly")
+    retail_data = get_total_sales(sales_outlet_id, start_date, end_date, "weekly")
     print(retail_data)

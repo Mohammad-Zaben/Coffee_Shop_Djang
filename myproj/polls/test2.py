@@ -1,22 +1,66 @@
-# myapp/views.py
-from models import SalesReceipts
-from pandas import DataFrame
+# import threading
+#
+# import threading
+#
+# counter = 0
+# lock = threading.Lock()
+#
+# def increment():
+#     global counter
+#     for _ in range(100000):
+#         with lock:  # Locking the critical section
+#             counter += 1
+#
+# # Create two threads
+# thread1 = threading.Thread(target=increment)
+# thread2 = threading.Thread(target=increment)
+#
+# # Start the threads
+# thread1.start()
+# thread2.start()
+#
+# # Wait for both threads to finish
+# thread1.join()
+# thread2.join()
+#
+# print(counter)
 
-def get_sorted_cars():
-    # Query all Car objects
-    sales = SalesReceipts.objects.all().values()
+import threading
 
-    # Convert the queryset to a pandas DataFrame
-    df = DataFrame(sales)
+counter = 0
+lock = threading.Lock()
 
-    # Sort the DataFrame by 'price'
-   # df_sorted_cars = df_cars.sort_values(by='')
+def increment():
+    global counter
+    for _ in range(1000000):  # Increase the number of iterations
+        with lock:  # Critical section protected by the lock
+            counter += 1
 
-    # Convert the sorted DataFrame back to a list of dictionaries
-    sales = df.to_dict(orient='records')
+def increment_without_lock():
+    global counter
+    for _ in range(1000000):
+        counter += 1
 
-    # Return the sorted cars as JSON
-    print(sales)
+# Test without lock
+counter = 0
+thread1 = threading.Thread(target=increment_without_lock)
+thread2 = threading.Thread(target=increment_without_lock)
 
+thread1.start()
+thread2.start()
+thread1.join()
+thread2.join()
 
-get_sorted_cars()
+print(f"Without Lock: {counter}")
+
+# Test with lock
+counter = 0
+thread1 = threading.Thread(target=increment)
+thread2 = threading.Thread(target=increment)
+
+thread1.start()
+thread2.start()
+thread1.join()
+thread2.join()
+
+print(f"With Lock: {counter}")
