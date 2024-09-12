@@ -1,4 +1,5 @@
-from myproj.polls.controllers.database import sale_receipts_df
+from .database import sale_receipts_df
+import pandas as pd
 
 
 class Filter:
@@ -10,12 +11,21 @@ class Filter:
             filtered_df = filtered_df[
                 (filtered_df["sales_outlet_id"] == sales_outlet_id)
             ]
+
         if start_date and end_date:
+            start_date = pd.to_datetime(start_date)
+            end_date = pd.to_datetime(end_date)
+            print(type(filtered_df["transaction_date"]))
+
+            filtered_df["transaction_date"] = pd.to_datetime(filtered_df["transaction_date"])
+
+            print(type(start_date))
+            print(type(filtered_df["transaction_date"]))
+
             filtered_df = filtered_df[
                 (filtered_df["transaction_date"] >= start_date) &
                 (filtered_df["transaction_date"] <= end_date)
                 ]
-
         return filtered_df
 
     @staticmethod
