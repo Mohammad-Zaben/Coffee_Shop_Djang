@@ -16,14 +16,20 @@ def get_sales(request):
 
     try:
         sales_outlet_id = int(sales_outlet_id)
+
         start_date = datetime.strptime(start_date, '%Y-%m-%d')
         end_date = datetime.strptime(end_date, '%Y-%m-%d')
+
+        start_date_str = start_date.strftime('%Y-%m-%d')
+        end_date_str = end_date.strftime('%Y-%m-%d')
+
         sales_type = str(sales_type)
     except ValueError as e:
         return Response({"error": f"Invalid parameter: {str(e)}"}, status=400)
 
     try:
-        retail_data = get_total_sales(start_date, end_date, sales_outlet_id, sales_type)
+
+        retail_data = get_total_sales(sales_outlet_id, start_date_str, end_date_str, sales_type)
         print(f'retail_data: {retail_data}')  # Debug output
         result = retail_data.to_dict(orient="records")
         return Response(result)
