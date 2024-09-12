@@ -6,6 +6,8 @@ class Filter:
     @staticmethod
     def filter_df(sales_outlet_id=None, start_date=None, end_date=None, filtering_list=None):
         filtered_df = sale_receipts_df[filtering_list]
+        # print(type(sales_outlet_id))
+        sales_outlet_id = int(sales_outlet_id)
 
         if sales_outlet_id:
             filtered_df = filtered_df[
@@ -15,17 +17,13 @@ class Filter:
         if start_date and end_date:
             start_date = pd.to_datetime(start_date)
             end_date = pd.to_datetime(end_date)
-            print(type(filtered_df["transaction_date"]))
-
-            filtered_df["transaction_date"] = pd.to_datetime(filtered_df["transaction_date"])
-
-            print(type(start_date))
-            print(type(filtered_df["transaction_date"]))
+            filtered_df['transaction_date'] = pd.to_datetime(filtered_df['transaction_date'])
 
             filtered_df = filtered_df[
                 (filtered_df["transaction_date"] >= start_date) &
                 (filtered_df["transaction_date"] <= end_date)
                 ]
+        print(filtered_df)
         return filtered_df
 
     @staticmethod
